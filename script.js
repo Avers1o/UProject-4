@@ -88,9 +88,33 @@ const personalMovieDB = {
         /*Условие if (personalMovieDB.privat) само подразумевает, что personalMovieDB.privat = true, иначе она не будет выполняться.*/
     },
     writeYourGenres: function() {
-        for (let i = 1; i <= 3; i++) {
-            personalMovieDB.genres[i - 1] = prompt(`Ваш любимый жанр под номером ${i}`);
+        for (let i = 1; i < 2; i++) {
+            /*let genre =  prompt(`Ваш любимый жанр под номером ${i}`);
+
+            if (genre === null || genre === '') {
+                i--;
+                console.log('Вы ввели некорректные данные или не ввели их вовсе');
+            } else {
+                personalMovieDB.genres[i - 1] = genre;
+            }*/
+
+            let genres =  prompt('Введите ваши любимые жанры через запятую', 'Триллер, детектив, фэнтези').toLowerCase();
+
+            if (genres === null || genres === '') {
+                i--;
+                console.log('Вы ввели некорректные данные или не ввели их вовсе');
+            } else {
+                personalMovieDB.genres = genres.split(', ');
+                personalMovieDB.genres.sort();
+
+                /*У метода sort() есть такая особенность, что первыми в приоритете сортирования у него идут прописные (большие) буквы.
+                Чтобы обойти эту особенность, можем к получаемой нами переменной genres применить метод toLowerCase().*/
+            }
         }
+        
+        personalMovieDB.genres.forEach((item, i) => {
+            console.log(`Любимый жанр ${i + 1} - это ${item}`);
+        });
     }
 };
 
