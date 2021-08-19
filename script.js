@@ -76,11 +76,22 @@ const personalMovieDB = {
         Агрументу hidden передается значение personalMovieDB.privat. !hidden == true, так как значение самого personalMovieDB.privat == false,
         поэтому такая условная конструкция работает.*/
     },
+    toggleVisibleMyDB: function() {
+        if (personalMovieDB.privat) {
+            personalMovieDB.privat = false;
+            console.log('База данных стала публичной');
+        } else {
+            personalMovieDB.privat = true;
+            console.log('База данных стала приватной');
+        }
+
+        /*Условие if (personalMovieDB.privat) само подразумевает, что personalMovieDB.privat = true, иначе она не будет выполняться.*/
+    },
     writeYourGenres: function() {
         for (let i = 1; i <= 3; i++) {
             personalMovieDB.genres[i - 1] = prompt(`Ваш любимый жанр под номером ${i}`);
         }
-    },
+    }
 };
 
 /*Когда мы работаем с консолью в браузере, каждый раз получаем значение undefined, в отличие от VSCode.
@@ -96,3 +107,5 @@ personalMovieDB.detectPersonalLevel();
 personalMovieDB.writeYourGenres();
 
 personalMovieDB.showMyDB(personalMovieDB.privat);
+
+personalMovieDB.toggleVisibleMyDB();
